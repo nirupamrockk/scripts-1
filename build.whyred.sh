@@ -82,11 +82,27 @@ TOOLS_SETUP()
 BUILD_LineageOS()
 {	
         . build/envsetup.sh && lunch lineage_whyred-userdebug && make -j32 bacon
+ 	cd out/target/product/whyred
+        rm -r android-info.txt  dex_bootjars obj_arm  product_copy_files_ignored.txt  symbols boot.img fake_packages ramdisk.img system build_fingerprint.txt gen ramdisk-recovery.img userdata.img build_thumbprint.txt install recovery clean_steps.mk kernel recovery.id data obj previous_build_config.mk  root vendor
+        cd ..
+	cp -r whyred /var/lib/jenkins/workspace/Xiaomi
+	cd 
+	cd /var/lib/jenkins/workspace/Xiaomi
+	mv whyred lineage
+	rm -r los	
 }
 
 BUILD_pixelexperiance()
 {	
         . build/envsetup.sh && lunch aosp_whyred-userdebug && make -j32 bacon
+ 	cd out/target/product/whyred
+        rm -r android-info.txt  dex_bootjars obj_arm  product_copy_files_ignored.txt  symbols boot.img fake_packages ramdisk.img system build_fingerprint.txt gen ramdisk-recovery.img userdata.img build_thumbprint.txt install recovery clean_steps.mk kernel recovery.id data obj previous_build_config.mk  root vendor
+        cd ..
+	cp -r whyred /var/lib/jenkins/workspace/Xiaomi
+	cd 
+	cd /var/lib/jenkins/workspace/Xiaomi
+	mv whyred pixel
+	rm -r pe		
 }
 
 # Main Menu
