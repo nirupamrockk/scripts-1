@@ -34,6 +34,28 @@ LINEAGE-SOURCE()
     git clone https://github.com/RaghuVarma331/vendor_MiuiCamera.git -b pie vendor/MiuiCamera
 } 
 
+PE-SOURCE()
+{
+    mkdir pe
+    cd pe
+    echo -ne '\n' | repo init -u https://github.com/PixelExperience/manifest -b pie --depth=1
+    repo sync -c --no-tags --no-clone-bundle -f --force-sync -j16
+    rm -r packages/resources/devicesettings
+    rm -r prebuilts/clang
+    rm -r packages/apps/Settings
+    rm -r packages/apps/Updates    
+    rm -r vendor/aosp    
+    git clone https://github.com/PixelExperience/prebuilts_clang_host_linux-x86.git prebuilts/clang/host/linux-x86    
+    git clone https://github.com/LineageOS/android_packages_resources_devicesettings.git -b lineage-16.0 packages/resources/devicesettings
+    git clone https://github.com/RaghuVarma331/android_kernel_xiaomi_whyred.git --depth=1 -b pie-whyred kernel/xiaomi/whyred
+    git clone https://github.com/RaghuVarma331/android_device_xiaomi_whyred.git -b pie-whyred device/xiaomi/whyred
+    git clone https://github.com/RaghuVarma331/vendor_xiaomi_whyred.git -b pie vendor/xiaomi/whyred
+    git clone https://github.com/RaghuVarma331/vendor_MiuiCamera.git -b pie vendor/MiuiCamera
+    git clone https://github.com/RaghuVarma331/android_packages_apps_Settings.git -b pie --depth=1 packages/apps/Settings
+    git clone https://github.com/RaghuVarma331/android_packages_apps_Updates.git -b pie packages/apps/Updates  
+    git clone https://github.com/RaghuVarma331/vendor_aosp.git -b pie --depth=1  vendor/aosp    
+} 
+
 CLEAN_SOURCE()
 {
 	rm -r  out
@@ -60,7 +82,12 @@ TOOLS_SETUP()
 BUILD_LineageOS()
 {	
         . build/envsetup.sh && lunch lineage_whyred-userdebug && make -j32 bacon
-}	
+}
+
+BUILD_pixelexperiance()
+{	
+        . build/envsetup.sh && lunch aosp_whyred-userdebug && make -j32 bacon
+}
 
 # Main Menu
 clear
@@ -68,8 +95,8 @@ echo "--------------------------------------------------------------------------
 echo "Welcome To Whyred Redmi note5 pro Remote Script Made By Raghu Varma"
 echo "Coded By Raghu Varma.G #Developer"
 echo "----------------------------------------------------------------------------------------"
-PS3='Please select your option (1-2): '
-menuvar=("BasicSetup" "LineageOS"  "Exit")
+PS3='Please select your option (1-4): '
+menuvar=("BasicSetup" "LineageOS"  "PixelExperience" "all_roms" "Exit")
 select menuvar in "${menuvar[@]}"
 do
     case $menuvar in
@@ -132,6 +159,90 @@ do
             read -n1 -r key
             break
             ;;
+        "PixelExperience")
+            clear
+            echo "----------------------------------------------"
+            echo "Started Building PixelExperience For whyred  ."
+            echo "Please be patient..."
+            # PixelExperience
+            echo "----------------------------------------------"
+            echo "Setting Up Tools & Stuff..."
+            echo " "
+            TOOLS_SETUP
+	    echo " "	    
+            echo "----------------------------------------------"
+            echo "Setting up Environment & source..."
+            echo " "
+            PE-SOURCE
+	    echo " "
+            echo "----------------------------------------------"
+            echo "Cleaning up source..."
+            echo " "
+            CLEAN_SOURCE            
+	    echo " "
+            echo "----------------------------------------------"
+            echo "Compilation Started..."
+            echo " "
+            BUILD_pixelexperiance
+            echo " "
+            echo "----------------------------------------------"
+            echo "PixelExperience Rom build finished."
+            echo " "
+            echo "----------------------------------------------"
+            echo "whyred 2019 PixelExperience build finished."
+            echo "Flashable zip is located into /root."
+            echo "Press any key for end the script."
+            echo "----------------------------------------------"
+            read -n1 -r key
+            break
+            ;;	    
+	"all_roms")
+            clear
+            echo "----------------------------------------------"
+            echo "Started Building All Roms For whyred  ."
+            echo "Please be patient..."
+            # all_roms
+            echo "----------------------------------------------"
+            echo "Setting up PE & source..."
+            echo " "
+            PE-SOURCE
+	    echo " "
+            echo "----------------------------------------------"
+            echo "Cleaning up source..."
+            echo " "
+            CLEAN_SOURCE
+            echo " "
+            echo "----------------------------------------------"
+            echo "Compilation Started..."
+	    echo " "
+            BUILD_pixelexperiance
+            echo " "  
+            echo "----------------------------------------------"
+            echo "Setting up Lineage & source..."
+            echo " "
+            LINEAGE-SOURCE
+	    echo " "
+            echo "----------------------------------------------"
+            echo "Cleaning up source..."
+            echo " "
+            CLEAN_SOURCE            
+	    echo " "
+            echo "----------------------------------------------"
+            echo "Compilation Started..."
+            echo " "
+            BUILD_LineageOS
+            echo " "	    
+            echo "----------------------------------------------"
+            echo "all 2 completed."
+            echo " "
+            echo "----------------------------------------------"
+            echo "whyred 2019 All 4 roms compilation completed."
+            echo "Flashable zips is located /root."
+            echo "Press any key for end the script."
+            echo "----------------------------------------------"
+            read -n1 -r key
+            break
+            ;;		    
         "Exit")
             break
             ;;
