@@ -52,7 +52,7 @@ PE-SOURCE()
     git clone https://github.com/RaghuVarma331/vendor_xiaomi_whyred.git -b pie vendor/xiaomi/whyred
     git clone https://github.com/RaghuVarma331/vendor_MiuiCamera.git -b pie vendor/MiuiCamera
     git clone https://github.com/RaghuVarma331/android_packages_apps_Settings.git -b pie --depth=1 packages/apps/Settings
-    git clone https://github.com/RaghuVarma331/android_packages_apps_Updates.git -b whyred packages/apps/Updates  
+    git clone https://github.com/RaghuVarma331/android_packages_apps_Updater.git -b pie packages/apps/Updater
     git clone https://github.com/RaghuVarma331/vendor_aosp.git -b pie --depth=1  vendor/aosp    
 } 
 
