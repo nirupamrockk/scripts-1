@@ -49,7 +49,7 @@ PE-SOURCE()
     git clone https://github.com/RaghuVarma331/android_kernel_nokia_sdm660.git -b pie --depth=1 kernel/nokia/sdm660
     git clone https://gitlab.com/RaghuVarma331/vendor_nokia_DRG_sprout.git -b pie --depth=1 vendor/nokia/DRG_sprout
     git clone https://github.com/RaghuVarma331/android_packages_apps_Settings.git -b pie --depth=1 packages/apps/Settings
-    git clone https://github.com/RaghuVarma331/android_packages_apps_Updates.git -b pie packages/apps/Updates  
+    git clone https://github.com/RaghuVarma331/android_packages_apps_Updater.git -b pie packages/apps/Updater  
     git clone https://github.com/RaghuVarma331/vendor_aosp.git -b pie --depth=1  vendor/aosp
 }
 TWRP-P-SOURCE()
