@@ -139,7 +139,7 @@ echo "Welcome To Whyred Redmi note5 pro Remote Script Made By Raghu Varma"
 echo "Coded By Raghu Varma.G #Developer"
 echo "----------------------------------------------------------------------------------------"
 PS3='Please select your option (1-5): '
-menuvar=("BasicSetup" "LineageOS"  "PixelExperience" "all_roms" "Exit")
+menuvar=("BasicSetup" "LineageOS"  "PixelExperience" "OnUI-Pendro" "all_roms" "Exit")
 select menuvar in "${menuvar[@]}"
 do
     case $menuvar in
